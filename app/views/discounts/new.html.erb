@@ -1,0 +1,13 @@
+<%= render partial: "shared/nav" %>
+
+<p>New Discount</p>
+
+<%= form_with url: merchant_discounts_path(@merchant), method: :post, data: {turbo: false} do |f| %>
+  <%= f.label :percentage, "Percentage" %>
+  <%= f.text_field :percentage %>
+  <br>
+  <%= f.label :quantity_threshold, "Quantity Threshold" %>
+  <%= f.text_field :quantity_threshold %>
+  <br>
+  <%= f.submit "Create Discount"%>
+<% end %>
