@@ -62,7 +62,7 @@ describe 'merchant discounts index' do
 
   it 'can show all discounts a merchant has' do
     visit merchant_discounts_path(@merchant1)
-    save_and_open_page
+
     expect(page).to have_content("#{@discount1.percent_off}% off #{@discount1.quantity_threshold} items or more")
     expect(page).to have_content("#{@discount2.percent_off}% off #{@discount2.quantity_threshold} items or more")
     expect(page).to have_content("#{@discount3.percent_off}% off #{@discount3.quantity_threshold} items or more")
@@ -75,5 +75,11 @@ describe 'merchant discounts index' do
     expect(page).to have_link("Discount #{@merchant1.discounts.first.id}")
     expect(page).to have_link("Discount #{@merchant1.discounts.second.id}")
     expect(page).to have_link("Discount #{@merchant1.discounts.third.id}")
+  end
+
+  it 'has link to form to create a discount' do
+    visit merchant_discounts_path(@merchant1)
+
+    expect(page).to have_link('Create New Discount')
   end
 end
