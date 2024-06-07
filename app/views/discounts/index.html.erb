@@ -6,3 +6,5 @@
   <p><%= "#{discount.percent_off}% off #{discount.quantity_threshold} items or more" %></p>
   <p><%= link_to "Discount #{discount.id}", merchant_discount_path(@merchant, discount) %></p>
 <% end %>
+
+<p><%= link_to "Create New Discount", new_merchant_discount_path(@merchant) %></p>
