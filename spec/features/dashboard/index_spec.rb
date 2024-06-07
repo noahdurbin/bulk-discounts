@@ -72,7 +72,7 @@ RSpec.describe 'merchant dashboard' do
 
     click_link 'Discounts'
 
-    expect(current_path).to eq('/merchants/discounts')
+    expect(current_path).to eq("/merchants/#{@merchant1.id}/discounts")
   end
 
   it 'shows the names of the top 5 customers with successful transactions' do
