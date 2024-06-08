@@ -1,0 +1,5 @@
+<%= render partial: "shared/nav" %>
+
+<p>Edit Item</p>
+
+<%= render partial: 'form', locals: { method: :patch, url: merchant_discount_path(@merchant, @discount), local: true, model: @discount} %>
