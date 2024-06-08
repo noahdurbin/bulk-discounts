@@ -82,4 +82,21 @@ RSpec.describe 'merchant discounts index' do
 
     expect(page).to have_link('Create New Discount')
   end
+
+  it 'has a button by each discout to delete discount' do
+    visit merchant_discounts_path(@merchant1)
+
+    expect(page).to have_button('Delete Discount', count: 4)
+  end
+
+  it 'can delete a discount' do
+    visit merchant_discounts_path(@merchant1)
+
+    click_button "Delete Discount #{@merchant1.discounts.first.id}"
+
+    expect(current_path).to eq(merchant_discounts_path(@merchant1))
+    expect(page).to_not have_content(@discount1.id)
+    expect(page).to_not have_content(@discount1.percentage)
+    expect(page).to_not have_content(@discount1.quantity_threshold)
+  end
 end
