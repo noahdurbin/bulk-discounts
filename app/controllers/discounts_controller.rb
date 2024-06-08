@@ -5,8 +5,7 @@ class DiscountsController < ApplicationController
   end
 
   def show
-    @discount = Discount.find(params[:discount_id])
-    @percent_off = "#{@discount.percent_off}%"
+    @discount = Discount.find(params[:id])
   end
 
   def new

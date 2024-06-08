@@ -21,7 +21,7 @@ RSpec.describe 'discount show page' do
 
     it 'displays a discounts item threshold for a discount' do
       visit merchant_discount_path(@merchant1, @discount1)
-
+      save_and_open_page
       expect(page).to have_content('10 items or more')
     end
   end
