@@ -8,7 +8,7 @@ RSpec.describe 'discounts new page' do
   it 'can create a new discount' do
     visit new_merchant_discount_path(@merchant)
 
-    fill_in 'Percentage', with: 0.23
+    fill_in 'Percentage', with: 23
     fill_in 'Quantity Threshold', with: 17
 
     click_button 'Create Discount'

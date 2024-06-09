@@ -16,6 +16,7 @@ class DiscountsController < ApplicationController
   def create
     @merchant = Merchant.find(params[:merchant_id])
     @discount = @merchant.discounts.create(create_params)
+    @discount.percentage = @discount.percentage.to_f / 100.0
 
     if @discount.save
       redirect_to merchant_discounts_path(@merchant)
@@ -28,11 +29,14 @@ class DiscountsController < ApplicationController
   def edit
     @merchant = Merchant.find(params[:merchant_id])
     @discount = Discount.find(params[:id])
+    @discount.percentage = @discount.percentage * 100
   end
 
   def update
     @merchant = Merchant.find(params[:merchant_id])
     @discount = Discount.find(params[:id])
+    @discount.percentage = discount_params[:percentage].to_f / 100.0
+
     if @discount.update(discount_params)
       flash[:notice] = 'Discount updated.'
       redirect_to merchant_discount_path(@merchant, @discount)
