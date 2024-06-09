@@ -24,7 +24,7 @@ class InvoiceItem < ApplicationRecord
                    .pick(:percentage)
 
     if discount
-      (unit_price * (1 - percentage)).round(2)
+      unit_price * (1 - percentage)
     else
       unit_price
     end
