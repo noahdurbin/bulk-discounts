@@ -57,6 +57,6 @@ class DiscountsController < ApplicationController
   private
 
   def discount_params
-    params.require(:discount).permit(:percentage, :quantity_threshold)
+    params.permit(:percentage, :quantity_threshold)
   end
 end
