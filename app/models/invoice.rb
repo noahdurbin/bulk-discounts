@@ -23,6 +23,6 @@ class Invoice < ApplicationRecord
   end
 
   def total_discount
-    total_revenue.round(2) - discounted_revenue.round(2)
+    (total_revenue.round(2) - discounted_revenue.round(2)).round(2)
   end
 end
