@@ -17,12 +17,14 @@ class InvoiceItem < ApplicationRecord
 
   def discounted_price
     discount = item.merchant.discounts
+                   .select('percentage')
                    .where('quantity_threshold <= ?', quantity)
                    .order(percentage: :desc)
-                   .first
+                   .limit(1)
+                   .pick(:percentage)
 
     if discount
-      (unit_price * (1 - discount.percentage)).round(2)
+      (unit_price * (1 - percentage)).round(2)
     else
       unit_price
     end
