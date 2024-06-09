@@ -21,10 +21,9 @@ class InvoiceItem < ApplicationRecord
                    .where('quantity_threshold <= ?', quantity)
                    .order(percentage: :desc)
                    .limit(1)
-                   .pick(:percentage)
 
     if discount
-      unit_price * (1 - percentage)
+      unit_price * (1 - discount.percentage)
     else
       unit_price
     end
