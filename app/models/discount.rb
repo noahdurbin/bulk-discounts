@@ -5,6 +5,7 @@ class Discount < ApplicationRecord
   validates_presence_of :quantity_threshold
   validates_numericality_of :percentage
   validates_numericality_of :quantity_threshold
+  validates_numericality_of :percentage, greater_than: 0, less_than: 1
 
   def percent_off
     percentage * 100

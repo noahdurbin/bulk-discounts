@@ -10,7 +10,7 @@ RSpec.describe 'discount edit page' do
     it 'it sees a form with attributes already filled in' do
       visit edit_merchant_discount_path(@merchant1, @discount1)
 
-      expect(page).to have_field('Percentage', with: '0.1')
+      expect(page).to have_field('Percentage', with: '10.0')
       expect(page).to have_field('Quantity threshold', with: '10')
     end
 
