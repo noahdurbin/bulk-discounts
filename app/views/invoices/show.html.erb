@@ -11,9 +11,9 @@
   <br>
 
   <p> Created on: <%= @invoice.created_at.strftime("%A, %B %-d, %Y") %></p>
-  <p>Total Revenue: $<%= @invoice.total_revenue %></p>
-  <p>Discounted Revenue: $<%= @invoice.discounted_revenue %></p>
-  <p>Total Discount: $<%= @invoice.total_discount %></p>
+  <p>Total Revenue: <%= number_to_currency(@invoice.total_revenue, unit: "$", seperator: ".", format: "%u %n") %></p>
+  <p>Discounted Revenue: <%= number_to_currency(@invoice.discounted_revenue, unit: "$", seperator: ".", format: "%u %n") %></p>
+  <p>Total Discount: <%= number_to_currency(@invoice.total_discount, unit: "$", seperator: ".", format: "%u %n") %></p>
 
 
   <h4>Customer:</h4>

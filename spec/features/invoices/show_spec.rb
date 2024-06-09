@@ -109,9 +109,9 @@ RSpec.describe 'invoices show' do
     discount1 = @merchant1.discounts.create!(percentage: 0.2, quantity_threshold: 10)
 
     visit merchant_invoice_path(@merchant1, @invoice_1)
-
-    expect(page).to have_content('Discounted Revenue: $147.6')
-    expect(page).to have_content('Total Revenue: $162.0')
-    expect(page).to have_content('Total Discount: $14.40')
+    save_and_open_page
+    expect(page).to have_content('Discounted Revenue: $ 147.6')
+    expect(page).to have_content('Total Revenue: $ 162.0')
+    expect(page).to have_content('Total Discount: $ 14.40')
   end
 end
