@@ -17,7 +17,6 @@ class InvoiceItem < ApplicationRecord
 
   def discounted_price
     discount = item.merchant.discounts
-                   .select('percentage')
                    .where('quantity_threshold <= ?', quantity)
                    .order(percentage: :desc)
                    .limit(1)
