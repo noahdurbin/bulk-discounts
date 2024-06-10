@@ -11,14 +11,14 @@ RSpec.describe 'discount edit page' do
       visit edit_merchant_discount_path(@merchant1, @discount1)
 
       expect(page).to have_field('Percentage', with: '10.0')
-      expect(page).to have_field('Quantity threshold', with: '10')
+      expect(page).to have_field('Quantity Threshold', with: '10')
     end
 
     it 'can edit a discounts attributes' do
       visit edit_merchant_discount_path(@merchant1, @discount1)
 
-      fill_in 'Percentage', with: '0.2'
-      fill_in 'Quantity threshold', with: '20'
+      fill_in 'Percentage', with: 20
+      fill_in 'Quantity Threshold', with: 20
 
       click_button 'Submit'
 

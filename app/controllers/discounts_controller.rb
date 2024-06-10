@@ -29,20 +29,20 @@ class DiscountsController < ApplicationController
   def edit
     @merchant = Merchant.find(params[:merchant_id])
     @discount = Discount.find(params[:id])
-    @discount.percentage = @discount.percentage * 100
   end
 
   def update
     @merchant = Merchant.find(params[:merchant_id])
     @discount = Discount.find(params[:id])
-    @discount.percentage = discount_params[:percentage].to_f / 100.0
+    new_params = discount_params
+    new_params[:percentage] = discount_params[:percentage].to_f / 100.0
 
-    if @discount.update(discount_params)
-      flash[:notice] = 'Discount updated.'
+    if @discount.update(new_params)
+      flash[:notice] = 'Discount updated successfully.'
       redirect_to merchant_discount_path(@merchant, @discount)
     else
       flash[:error] = 'Discount not updated: Required information missing.'
-      redirect_to edit_merchant_discount_path(@merchant, @discount)
+      render :edit
     end
   end
 
