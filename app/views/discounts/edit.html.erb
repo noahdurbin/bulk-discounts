@@ -2,4 +2,10 @@
 
 <p>Edit Item</p>
 
-<%= render partial: 'form', locals: { method: :patch, url: merchant_discount_path(@merchant, @discount), local: true, model: @discount} %>
+<%= form_with model: @discount, method: :patch, url: merchant_discount_path(@merchant, @discount), local: true do |f| %>
+  <%= f.label :percentage, "Percentage" %>
+  <%= f.text_field :percentage, min: 0, max: 100, value: (@discount.percentage * 100) %><br/><br/>
+  <%= f.label :quantity_threshold, "Quantity Threshold" %>
+  <%= f.text_field :quantity_threshold %><br/><br/>
+  <%= f.submit 'Submit'%>
+<% end %>
