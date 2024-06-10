@@ -16,15 +16,19 @@ class InvoiceItem < ApplicationRecord
   end
 
   def discounted_price
-    discount = item.merchant.discounts
-                   .where('quantity_threshold <= ?', quantity)
-                   .order(percentage: :desc)
-                   .first
+    discount = applied_discount
 
     if discount
       unit_price * (1 - discount.percentage)
     else
       unit_price
     end
+  end
+
+  def applied_discount
+    discount = item.merchant.discounts
+                   .where('quantity_threshold <= ?', quantity)
+                   .order(percentage: :desc)
+                   .first
   end
 end
