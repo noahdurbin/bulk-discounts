@@ -26,5 +26,16 @@ RSpec.describe 'discount edit page' do
       expect(page).to have_content('20.0% off')
       expect(page).to have_content('20 items or more')
     end
+
+    it 'cannot edit a discount with no values' do
+      visit edit_merchant_discount_path(@merchant1, @discount1)
+
+      fill_in 'Percentage', with: ''
+      fill_in 'Quantity Threshold', with: ''
+
+      click_button 'Submit'
+
+      expect(page).to have_content('Discount not updated: Required information missing.')
+    end
   end
 end

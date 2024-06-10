@@ -49,13 +49,10 @@ class DiscountsController < ApplicationController
   def destroy
     merchant = Merchant.find(params[:merchant_id])
     discount = Discount.find(params[:id])
-    if discount.destroy
-      redirect_to merchant_discounts_path(merchant)
-      flash[:notice] = 'Discount deleted.'
-    else
-      flash[:notice] = 'Discount not deleted: Required information missing.'
-      redirect_to merchant_discounts_path(merchant)
-    end
+    
+    discount.destroy
+    redirect_to merchant_discounts_path(merchant)
+    flash[:notice] = 'Discount deleted.'
   end
 
   private

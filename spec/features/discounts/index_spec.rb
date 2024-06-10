@@ -94,9 +94,17 @@ RSpec.describe 'merchant discounts index' do
 
     click_button "Delete Discount #{@merchant1.discounts.first.id}"
 
+    expect(page).to have_button('Delete Discount', count: 3)
+
     expect(current_path).to eq(merchant_discounts_path(@merchant1))
-    expect(page).to_not have_content(@discount1.id)
-    expect(page).to_not have_content(@discount1.percentage)
-    expect(page).to_not have_content(@discount1.quantity_threshold)
+    expect(page).to_not have_content("Discount: #{@discount1.id}")
+  end
+
+  it 'give a flash message when a discount is deleted' do
+    visit merchant_discounts_path(@merchant1)
+
+    click_button "Delete Discount #{@merchant1.discounts.first.id}"
+
+    expect(page).to have_content('Discount deleted')
   end
 end
