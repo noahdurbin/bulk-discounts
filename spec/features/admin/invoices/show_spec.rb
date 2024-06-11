@@ -77,4 +77,17 @@ describe 'Admin Invoices Index Page' do
 
     expect(page).to have_content('Discounted Revenue: $25.2')
   end
+
+  it 'should discount by merchant by item' do
+    @m1.discounts.create!(percentage: 0.2, quantity_threshold: 10)
+
+    @m2 = Merchant.create!(name: 'Merchant 2')
+    @m2.discounts.create!(percentage: 0.2, quantity_threshold: 10)
+    @item3 = Item.create!(name: 'test', description: 'm2 item', unit_price: 6, merchant_id: @m2.id)
+    ii4 = InvoiceItem.create!(invoice_id: @i1.id, item_id: @item3.id, quantity: 12, unit_price: 2, status: 1)
+
+    visit admin_invoice_path(@i1)
+
+    expect(page).to have_content('Discounted Revenue: $44.4')
+  end
 end
